@@ -1,3 +1,4 @@
+import Estatisticas from "./Estatisticas.js";
 import fetchData from "./fetchData.js";
 import normalizarTransacao from "./normalizarTransacao.js";
 
@@ -11,6 +12,21 @@ async function handleData() {
   const transacoes = data.map(normalizarTransacao);
   // Preenchendo a tabela com as transações em formato correto
   preencherTabela(transacoes);
+  preencherEstatisticas(transacoes);
+}
+
+function preencherEstatisticas(transacoes: Transacao[]): void {
+  // Utilizamos a classe Estatísticas para exibir informações com base nos dados recebidos pela API
+  const data = new Estatisticas(transacoes);
+  // Calculamos o valor total das transações e o exibimos no tela
+  const totalElement = document.querySelector<HTMLElement>("#total span");
+  if (totalElement) {
+    totalElement.innerText = data.total.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+  console.log(data.total);
 }
 
 function preencherTabela(transacoes: Transacao[]): void {
