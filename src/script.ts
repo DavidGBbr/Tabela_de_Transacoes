@@ -19,6 +19,7 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
   // Utilizamos a classe Estatísticas para exibir informações com base nos dados recebidos pela API
   const data = new Estatisticas(transacoes);
   // Calculamos o valor total das transações e o exibimos no tela
+  console.log(data);
   const totalElement = document.querySelector<HTMLElement>("#total span");
   if (totalElement) {
     totalElement.innerText = data.total.toLocaleString("pt-BR", {
