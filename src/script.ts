@@ -28,11 +28,11 @@ function preencherLista(lista: CountList, containerId: string): void {
 function preencherEstatisticas(transacoes: Transacao[]): void {
   // Utilizamos a classe Estatísticas para exibir informações com base nos dados recebidos pela API
   const data = new Estatisticas(transacoes); // Calculamos o valor total das transações e o exibimos no tela
+  console.log(data);
 
   preencherLista(data.pagamento, "pagamento");
   preencherLista(data.status, "status");
 
-  console.log(data);
   const totalElement = document.querySelector<HTMLElement>("#total span");
   if (totalElement) {
     totalElement.innerText = data.total.toLocaleString("pt-BR", {
@@ -40,7 +40,11 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
       currency: "BRL",
     });
   }
-  console.log(data.total);
+
+  const diaElement = document.querySelector<HTMLElement>("#dia span");
+  if (diaElement) {
+    diaElement.innerText = data.melhorDia[0];
+  }
 }
 
 function preencherTabela(transacoes: Transacao[]): void {
