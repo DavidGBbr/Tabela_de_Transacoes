@@ -1,3 +1,4 @@
+// Corrigindo a string data para um objeto Date
 export default function stringToDate(texto: string): Date {
   const [data, tempo] = texto.split(" ");
   const [dia, mes, ano] = data.split("/").map(Number);

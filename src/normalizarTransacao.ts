@@ -9,6 +9,7 @@ declare global {
     | "Aguardando pagamento"
     | "Estornada";
 
+  // Primeira interface da API pura, sem normalização ainda
   interface TransacaoAPI {
     Nome: string;
     ID: number;
@@ -19,6 +20,8 @@ declare global {
     ["Forma de Pagamento"]: TransacaoPagamento;
     ["Cliente Novo"]: number;
   }
+
+  // Interface que iremos usar para substituir a primeira
   interface Transacao {
     nome: string;
     id: number;
@@ -31,6 +34,7 @@ declare global {
     novo: boolean;
   }
 }
+// Função que vai receber as transações com a primeira interface e retornar com a interface normalizada
 export default function normalizarTransacao(
   transacao: TransacaoAPI
 ): Transacao {
